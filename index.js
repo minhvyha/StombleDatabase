@@ -36,14 +36,12 @@ app.get(
   '/:key',
   [ authKey(process.env.PASSWORD)],
   (req, res) => {
-    console.log('123')
     const query = UserModel.find({});
     query.exec(function (err, user) {
       if (err) {
         console.log(err);
       }
       res.json(user);
-      console.log(user);
     });
     // console.log(user);
   }
@@ -56,7 +54,6 @@ app.post(
   async (req, res) => {
     const user = req.body;
     user.key = nanoid()
-    console.log(user)
     const newUser = new UserModel(user);
     await newUser.save();
     res.json(newUser);
