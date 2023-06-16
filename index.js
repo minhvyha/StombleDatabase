@@ -47,6 +47,21 @@ app.get(
   }
 );
 
+app.get(
+  '/:key/:id',
+  [ authKey(process.env.PASSWORD)],
+  (req, res) => {
+    const query = UserModel.findOne({key: req.params.id});
+    query.exec(function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+      res.json(user);
+    });
+    // console.log(user);
+  }
+);
+
 
 app.post(
   '/addContact/:key',
