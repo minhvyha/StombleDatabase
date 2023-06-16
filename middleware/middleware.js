@@ -1,6 +1,5 @@
 const authKey = (permission) => {
   return (req, res, next) => {
-    console.log(req.params.key)
     if (!req.params.key) {
       return res.status(401).json('Do not have permission to access.');
     }
